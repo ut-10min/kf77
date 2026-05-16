@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" data-meta-config="metaDescriptions.talks" content="第XXX回XX祭企画の講演一覧です。">
+  <title data-config="pageTitles.talks">講演一覧｜第XXX回XX祭 10分で伝えます！東大研究最前線</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="img/favicon.ico">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="breadcrumb breadcrumb-overlay" aria-label="現在位置">
+      <a data-link="officialHome" href="#">団体トップページ</a>
+      <span aria-hidden="true">＞</span>
+      <a href="index.html" data-config="labels.top">第XXX回XX祭 講演情報トップ</a>
+      <span aria-hidden="true">＞</span>
+      <span>講演一覧</span>
+    </nav>
+
+    <header class="sub-hero">
+      <h1>講演一覧</h1>
+      <p>各講演のタイトル、講演者、所属研究科、専攻分野、講演内容を掲載しています。</p>
+    </header>
+    <nav class="site-nav" aria-label="ページメニュー">
+      <a href="index.html">トップ</a>
+      <a href="talks.html" aria-current="page">講演一覧</a>
+      <a href="timetable.html">タイムテーブル</a>
+    </nav>
+
+    <main>
+      <section class="full-article">
+        <h2>講演内容</h2>
+        <div id="talks-list" class="talk-card-grid" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/talks.js"></script>
+</body>
+</html>

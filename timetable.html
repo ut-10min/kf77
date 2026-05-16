@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" data-meta-config="metaDescriptions.timetable" content="第XXX回XX祭企画のタイムテーブルです。">
+  <title data-config="pageTitles.timetable">タイムテーブル｜第XXX回XX祭 10分で伝えます！東大研究最前線</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="img/favicon.ico">
+</head>
+
+<body class="page-timetable">
+  <div class="container">
+    <nav class="breadcrumb breadcrumb-overlay" aria-label="現在位置">
+      <a data-link="officialHome" href="#">団体トップページ</a>
+      <span aria-hidden="true">＞</span>
+      <a href="index.html" data-config="labels.top">第XXX回XX祭 講演情報トップ</a>
+      <span aria-hidden="true">＞</span>
+      <span>タイムテーブル</span>
+    </nav>
+
+    <header class="sub-hero">
+      <h1>タイムテーブル</h1>
+      <p>日ごとの講演予定を確認できます。</p>
+    </header>
+    <nav class="site-nav" aria-label="ページメニュー">
+      <a href="index.html">トップ</a>
+      <a href="talks.html">講演一覧</a>
+      <a href="timetable.html" aria-current="page">タイムテーブル</a>
+    </nav>
+
+    <main>
+      <section class="full-article">
+        <h2>日程表</h2>
+
+        <div id="day-tabs" class="day-tabs" aria-label="日付切り替え"></div>
+        <div id="timetable-desktop" class="timetable-desktop table-wrapper"></div>
+        <div id="timetable-mobile" class="timetable-mobile"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/timetable.js"></script>
+</body>
+</html>

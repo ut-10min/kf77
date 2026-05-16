@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "node scripts/build-static.js",
+    "serve:local": "python -m http.server 8000",
+    "serve:dist": "npx serve dist"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {}
+}

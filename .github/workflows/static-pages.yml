@@ -1,0 +1,72 @@
+name: Build and deploy static Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "talks.html"
+      - "timetable.html"
+      - "css/**"
+      - "img/**"
+      - "js/**"
+      - "data/**"
+      - "scripts/**"
+      - "package.json"
+      - ".github/workflows/static-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+          check-latest: true
+
+      - name: Show Node versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Verify generated HTML
+        run: |
+          test -f dist/index.html
+          ! grep -R 'js/common.js' dist
+          ! grep -R 'js/talks.js' dist
+          ! grep -R 'js/timetable.js' dist
+          ! grep -R '第XXX回XX祭' dist
+          ! grep -R 'XXXX年X月XX日' dist
+          ! grep -R '会場未定' dist
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
