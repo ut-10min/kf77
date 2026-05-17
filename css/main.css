@@ -315,6 +315,44 @@ body {
   color: #2c2f36;
 }
 
+
+.maintenance-message {
+  box-sizing: border-box;
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #2c2f36;
+  font-size: 135%;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.talk-card-grid.is-empty {
+  display: block;
+  max-width: none;
+}
+
+.table-wrapper.is-empty {
+  max-width: none;
+  overflow-x: visible;
+}
+
+.timetable-desktop.table-wrapper.is-empty {
+  margin-top: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.full-article .maintenance-message {
+  max-width: 760px;
+}
+
 .two-column {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2136,3 +2174,60 @@ body {
 }
 
 /* article-survey は問い合わせセクションと同じ .full-article / .button-link を使用する */
+
+
+/* maintenance empty-state mobile */
+@media screen and (max-width: 639px) {
+  .maintenance-message {
+    width: 100%;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+}
+
+/* 空状態メッセージ：講演一覧とタイムテーブルで同じ見え方にする */
+.timetable-mobile.is-empty {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-timetable .maintenance-message,
+.talk-card-grid.is-empty .maintenance-message,
+.timetable-mobile.is-empty .maintenance-message {
+  box-sizing: border-box;
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #2c2f36;
+  font-size: 135%;
+  line-height: 1.8;
+  text-align: center;
+}
+
+@media screen and (max-width: 760px) {
+  .timetable-mobile.is-empty {
+    display: block;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .page-timetable .maintenance-message,
+  .talk-card-grid.is-empty .maintenance-message,
+  .timetable-mobile.is-empty .maintenance-message {
+    width: 100%;
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+}
+

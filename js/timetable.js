@@ -183,8 +183,29 @@ async function renderTimetable() {
       loadJson("data/schedule.json")
     ]);
 
+    const desktop = document.getElementById("timetable-desktop");
+    const mobile = document.getElementById("timetable-mobile");
+    const tabs = document.getElementById("day-tabs");
+
+    if (!Array.isArray(schedule) || schedule.length === 0) {
+      if (tabs) tabs.innerHTML = "";
+      const message = '<p class="maintenance-message">タイムテーブルは現在整備中です。公開までしばらくお待ちください。</p>';
+      if (desktop) {
+        desktop.classList.add("is-empty");
+        desktop.innerHTML = message;
+      }
+      if (mobile) {
+        mobile.classList.add("is-empty");
+        mobile.innerHTML = message;
+      }
+      return;
+    }
+
+    if (desktop) desktop.classList.remove("is-empty");
+    if (mobile) mobile.classList.remove("is-empty");
+
     schedule.sort((a, b) => `${a.date} ${a.start}`.localeCompare(`${b.date} ${b.start}`));
-    const talkMap = makeTalkMap(talks);
+    const talkMap = makeTalkMap(Array.isArray(talks) ? talks : []);
 
     renderDesktop(schedule, talkMap);
     renderMobile(schedule, talkMap);
@@ -192,7 +213,10 @@ async function renderTimetable() {
   } catch (error) {
     console.error(error);
     const desktop = document.getElementById("timetable-desktop");
-    if (desktop) desktop.innerHTML = '<p class="section-note">タイムテーブルを読み込めませんでした。</p>';
+    if (desktop) {
+      desktop.classList.add("is-empty");
+      desktop.innerHTML = '<p class="maintenance-message">タイムテーブルを読み込めませんでした。</p>';
+    }
   }
 }
 

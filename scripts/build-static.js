@@ -225,15 +225,23 @@ function renderTalks(config, talks, schedule) {
 
   html = applyConfigToPage(html, config, "talks");
 
-  const byTalk = scheduleTextByTalk(schedule);
-  const cards = [...talks]
-    .sort((a, b) => String(a.speakerKana || a.speaker || "").localeCompare(String(b.speakerKana || b.speaker || ""), "ja"))
-    .map((talk) => renderTalkCard(talk, (byTalk.get(talk.id) || []).join("、")))
-    .join("\n");
+  const talkItems = Array.isArray(talks) ? talks : [];
+  const scheduleItems = Array.isArray(schedule) ? schedule : [];
+
+  const isEmptyTalks = talkItems.length === 0;
+  const cards = isEmptyTalks
+    ? '<p class="maintenance-message">講演情報は現在整備中です。公開までしばらくお待ちください。</p>'
+    : (() => {
+        const byTalk = scheduleTextByTalk(scheduleItems);
+        return [...talkItems]
+          .sort((a, b) => String(a.speakerKana || a.speaker || "").localeCompare(String(b.speakerKana || b.speaker || ""), "ja"))
+          .map((talk) => renderTalkCard(talk, (byTalk.get(talk.id) || []).join("、")))
+          .join("\n");
+      })();
 
   html = html.replace(
     /<div id="talks-list" class="talk-card-grid" aria-live="polite"><\/div>/,
-    `<div id="talks-list" class="talk-card-grid">${cards}</div>`
+    `<div id="talks-list" class="talk-card-grid${isEmptyTalks ? ' is-empty' : ''}">${cards}</div>`
   );
 
   return removeClientJsonScripts(html);
@@ -282,12 +290,28 @@ function renderTimetable(config, talks, schedule) {
 
   html = applyConfigToPage(html, config, "timetable");
 
-  const talkMap = Object.fromEntries(talks.map((talk) => [talk.id, talk]));
-  const sorted = [...schedule].sort((a, b) => `${a.date} ${a.start}`.localeCompare(`${b.date} ${b.start}`));
+  const talkItems = Array.isArray(talks) ? talks : [];
+  const scheduleItems = Array.isArray(schedule) ? schedule : [];
+
+  if (scheduleItems.length === 0) {
+    const maintenanceMessage = '<p class="maintenance-message">タイムテーブルは現在整備中です。公開までしばらくお待ちください。</p>';
+    html = html.replace(/<div id="day-tabs" class="day-tabs" aria-label="日付切り替え"><\/div>/, '<div id="day-tabs" class="day-tabs" aria-label="日付切り替え"></div>');
+    html = html.replace(
+      /<div id="timetable-desktop" class="timetable-desktop table-wrapper"><\/div>/,
+      `<div id="timetable-desktop" class="timetable-desktop table-wrapper is-empty">${maintenanceMessage}</div>`
+    );
+    html = html.replace(
+      /<div id="timetable-mobile" class="timetable-mobile"><\/div>/,
+      `<div id="timetable-mobile" class="timetable-mobile is-empty">${maintenanceMessage}</div>`
+    );
+    return removeClientJsonScripts(html);
+  }
+
+  const talkMap = Object.fromEntries(talkItems.map((talk) => [talk.id, talk]));
+  const sorted = [...scheduleItems].sort((a, b) => `${a.date} ${a.start}`.localeCompare(`${b.date} ${b.start}`));
 
   const days = [...new Map(sorted.map((item) => [item.date, item.dateLabel])).entries()];
   const timeKeys = [...new Set(sorted.map((item) => `${item.start}-${item.end}`))].sort();
-
   const byDateTime = new Map();
   for (const item of sorted) {
     byDateTime.set(`${item.date}|${item.start}-${item.end}`, item);

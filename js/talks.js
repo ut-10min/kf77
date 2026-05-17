@@ -31,6 +31,14 @@ async function renderTalks() {
     ]);
 
     container.innerHTML = "";
+    container.classList.remove("is-empty");
+
+    if (!Array.isArray(talks) || talks.length === 0) {
+      container.classList.add("is-empty");
+      container.innerHTML = '<p class="maintenance-message">講演情報は現在整備中です。公開までしばらくお待ちください。</p>';
+      return;
+    }
+
     const sortedTalks = [...talks].sort((a, b) =>
       (a.speakerKana || a.speaker || "").localeCompare(
         b.speakerKana || b.speaker || "",
@@ -39,12 +47,13 @@ async function renderTalks() {
     );
 
     sortedTalks.forEach((talk) => {
-      const scheduleText = formatScheduleForTalk(schedule, talk.id);
+      const scheduleText = formatScheduleForTalk(Array.isArray(schedule) ? schedule : [], talk.id);
       container.appendChild(createTalkCard(talk, scheduleText));
     });
   } catch (error) {
     console.error(error);
-    container.innerHTML = '<p class="section-note">講演情報を読み込めませんでした。</p>';
+    container.classList.add("is-empty");
+    container.innerHTML = '<p class="maintenance-message">講演情報を読み込めませんでした。</p>';
   }
 }
 
