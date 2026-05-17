@@ -1,6 +1,6 @@
-# mf99 website
+# kf77 website
 
-GitHub Pages で `mf99/` 配下に置いた構成です。
+GitHub Pages で `kf77/` 配下に置いた構成です。
 
 主に毎回編集するファイル:
 - data/config.json: 外部リンク、日付、会場、SNS、動画、地図
