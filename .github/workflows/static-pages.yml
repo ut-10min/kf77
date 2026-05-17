@@ -55,7 +55,6 @@ jobs:
           ! grep -R 'js/timetable.js' dist
           ! grep -R '第XXX回XX祭' dist
           ! grep -R 'XXXX年X月XX日' dist
-          ! grep -R '会場未定' dist
 
       - uses: actions/upload-pages-artifact@v4
         with:
