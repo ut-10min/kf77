@@ -19,8 +19,8 @@
   "venueAddress": "〒153-8902 東京都目黒区駒場3丁目8−1",
   "links": {
     "officialHome": "https://ut-10min.github.io/",
-    "vote": "https://ut-10min.github.io/vote.html",
-    "zoomRegister": "",
+    "vote": "404.html",
+    "zoomRegister": "404.html",
     "contactForm": "https://forms.gle/yDF9upZH6AzfChyFA",
     "googleMap": "https://maps.app.goo.gl/rUvLG4HFmAQksFSz5",
     "mapEmbed": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3241.666642055791!2d139.6837761!3d35.660584!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f353d40075ad%3A0x563e46f8dccdaf7!2z5p2x5Lqs5aSn5a2mIDIxS09NQ0VFIEVhc3Q!5e0!3m2!1sja!2sjp!4v1732030469782!5m2!1sja!2sjp",
