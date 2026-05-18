@@ -162,6 +162,12 @@ function renderMembers(config) {
   }).join("\n");
 }
 
+function renderNotFound(config) {
+  let html = readText("404.html");
+  html = applyConfigToPage(html, config, "index");
+  return html;
+}
+
 function renderIndex(config) {
   let html = readText("index.html");
 
@@ -429,6 +435,7 @@ function main() {
   const schedule = readJson("data/schedule.json");
 
   writeDist("index.html", renderIndex(config));
+  writeDist("404.html", renderNotFound(config));
   writeDist("talks.html", renderTalks(config, talks, schedule));
   writeDist("timetable.html", renderTimetable(config, talks, schedule));
   writeEmbedRuntime();
