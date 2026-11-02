@@ -85,3 +85,7 @@ npm run build
 
 ## 自動Build周りの管理
 Node.js のビルドスクリプトは、`scripts/static-build.js` と'.github/workflows/static-pages.yml'に書いています。Node.jsのバージョン指定等を行っているため、古くなっていたらバージョン等を更新してください。
+
+## PDF・Excel資料からのJSON変換
+
+3資料（シフトPDF・参加登録Excel・講演題目Excel）を選んで自動変換するPythonツールを用意しています。起動方法・対応形式・IDの付け方・バックアップについては [変換ツールの説明](scripts/import_data/README.md) を参照してください。
