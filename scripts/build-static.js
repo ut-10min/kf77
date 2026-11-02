@@ -114,7 +114,11 @@ function dateTimeHtml(value) {
 
   return [
     year ? `<span class="date-year-full">${escapeHtml(year)}</span>` : "",
-    ...parts.map((part) => `<span class="date-main">${escapeHtml(part)}</span>`)
+    ...parts.map((part) => {
+      const match = part.match(/^(.*?)\s*(\d{1,2}:\d{2}.*)$/);
+      const segments = match ? [match[1], match[2]] : [part];
+      return `<span class="date-main">${segments.map((text) => `<span>${escapeHtml(text)}</span>`).join("")}</span>`;
+    })
   ].join("");
 }
 
@@ -165,7 +169,7 @@ function renderMembers(config) {
 function renderNotFound(config) {
   let html = readText("404.html");
   html = applyConfigToPage(html, config, "index");
-  return html;
+  return removeClientJsonScripts(html);
 }
 
 function renderIndex(config) {
