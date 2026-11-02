@@ -61,7 +61,15 @@ function setDateTimeText(value) {
       lines.push(`<span class="date-year-full">${year}</span>`);
     }
     parts.forEach((part) => {
-      lines.push(`<span class="date-main">${part}</span>`);
+      const match = part.match(/^(.*?)\s*(\d{1,2}:\d{2}.*)$/);
+      const line = document.createElement("span");
+      line.className = "date-main";
+      (match ? [match[1], match[2]] : [part]).forEach((text) => {
+        const segment = document.createElement("span");
+        segment.textContent = text;
+        line.appendChild(segment);
+      });
+      lines.push(line.outerHTML);
     });
 
     el.innerHTML = lines.join("");

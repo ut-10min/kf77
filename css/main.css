@@ -1841,52 +1841,48 @@ body {
 }
 
 
-/* 開催日時カード：2026年を1行目、各日程を2・3行目に表示。
-   通常は大きめのまま、狭いカードでは収まる範囲で縮小する。 */
-.date-time-lines {
+/* 開催日時は文字を縮めず、日付・時間の区切りで折り返す。 */
+#article-event .date-time-lines {
   display: grid !important;
-  grid-template-columns: 1fr;
-  row-gap: 0.15em;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0.6em;
   align-items: start;
-  line-height: 1.45 !important;
-  font-size: clamp(1.05rem, 1.25vw, 1.35rem) !important;
+  font-size: 1.25rem !important;
+  line-height: 1.5 !important;
+  font-variant-numeric: tabular-nums;
 }
 
-.date-time-lines span {
+#article-event .date-year-full {
   display: block !important;
-}
-
-.date-year-full {
-  font-weight: bold;
+  font-size: 1.125rem;
   white-space: nowrap;
 }
 
-.date-main {
-  white-space: nowrap;
-  min-width: 0;
+#article-event .date-main {
+  display: flex !important;
+  flex-wrap: wrap;
+  column-gap: 0.5em;
+  white-space: normal;
+  overflow-wrap: normal;
 }
 
-@container (max-width: 360px) {
-  .date-time-lines {
-    font-size: clamp(0.92rem, 4.3cqw, 1.15rem) !important;
+#article-event .date-main > span {
+  display: block !important;
+  white-space: nowrap;
+}
+
+#article-event .date-time-lines span::before {
+  content: none;
+}
+
+@media screen and (max-width: 639px) {
+  #article-event .date-main {
+    flex-direction: column;
   }
 }
 
-/* container query 非対応環境向け。カードが狭い画面では少しだけ縮める */
 .summary-item {
   container-type: inline-size;
-}
-
-@media screen and (max-width: 900px) {
-  .date-time-lines {
-    font-size: clamp(0.98rem, 2.4vw, 1.25rem) !important;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .date-time-lines {
-    font-size: clamp(0.9rem, 4.3vw, 1.08rem) !important;
-  }
 }
 
 
