@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from openpyxl import Workbook
-from converter import (ConversionError, ROOT, convert, key, match_person,
+from converter import (ConversionError, ROOT, convert, convert_schedule, key, match_person,
                        read_registrations, validate, write_result)
 
 
@@ -66,6 +66,26 @@ class ConverterTests(unittest.TestCase):
                     write_result({name: [] for name in names}, {}, output, Path(directory)/'reports')
             for name in names:
                 self.assertEqual((output/name).read_text(), 'original-'+name)
+
+    @unittest.skipUnless(os.environ.get('KF77_SHIFT_V4'), 'KF77_SHIFT_V4 指定時に新版PDFを確認')
+    def test_updated_shift_keeps_talks_and_reads_unlabelled_merged_event(self):
+        talks = json.loads((ROOT/'data/talks.json').read_text())
+        config = json.loads((ROOT/'data/config.json').read_text())
+        original = json.dumps(talks, ensure_ascii=False)
+        result, report = convert_schedule(Path(os.environ['KF77_SHIFT_V4']), talks, config)
+        self.assertEqual(set(result), {'schedule.json'})
+        self.assertEqual(json.dumps(talks, ensure_ascii=False), original)
+        slots = {(s['date'], s['start']): s for s in result['schedule.json']}
+        for date, start, speaker in [('2026-11-21','11:40','岡田正直'),
+                                     ('2026-11-22','11:20','山田江里子'),
+                                     ('2026-11-22','14:00','安藤靖'),
+                                     ('2026-11-23','10:20','梅村悠介'),
+                                     ('2026-11-23','11:40','山田江里子')]:
+            self.assertEqual(slots[date,start]['speaker'], speaker)
+        event = slots['2026-11-23','12:00']
+        self.assertEqual((event['type'],event['title'],event['end']),('break','座談会','12:40'))
+        self.assertFalse(any(s.get('speaker')=='田口晴翔' for s in result['schedule.json']))
+        self.assertEqual(report['counts'], dict(talks=12,talkSlots=51,otherSlots=3,days=3))
 
     @unittest.skipUnless(os.environ.get('KF77_SOURCE_DIR'), 'KF77_SOURCE_DIR 指定時に元資料との統合確認を実施')
     def test_supplied_files_end_to_end(self):

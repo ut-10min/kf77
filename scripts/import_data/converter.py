@@ -157,7 +157,7 @@ def read_talks(path, people, notes):
         wb.close()
 
 
-def read_schedule(path, year, talks, people):
+def read_schedule(path, year, talks, people, require_all_talks=True):
     schedule, days, provenance = [], {}, []
     talk_map = {t['speaker']: t for t in talks}
     with pdfplumber.open(path) as pdf:
@@ -220,7 +220,7 @@ def read_schedule(path, year, talks, people):
                                     start=clock(base_start), end=clock(end))
                         if label.startswith(('座談会', '休憩')):
                             times = re.findall(r"\d{1,2}:\d{2}", label)
-                            if len(times) != 2 or [minute(t) for t in times] != [base_start, end]:
+                            if times and (len(times) != 2 or [minute(t) for t in times] != [base_start, end]):
                                 raise ConversionError(f"{date_iso}: 座談会・休憩の記載時間と結合セルが一致しません。")
                             # 既存表示は非講演を break として扱う。title はそのまま公開。
                             item.update(type='break', title='座談会' if label.startswith('座談会') else '休憩')
@@ -237,11 +237,11 @@ def read_schedule(path, year, talks, people):
     if not days:
         raise ConversionError("シフト表を抽出できません。文字情報と罫線のあるPDFが必要です。")
     schedule.sort(key=lambda s: (s['date'], s['start']))
-    validate(talks, schedule, days)
+    validate(talks, schedule, days, require_all_talks=require_all_talks)
     return schedule, sorted(days.values(), key=lambda d: d['date']), provenance
 
 
-def validate(talks, schedule, days):
+def validate(talks, schedule, days, require_all_talks=True):
     by_id = {t['id']: t for t in talks}
     if len(by_id) != len(talks):
         raise ConversionError("講演IDが重複しています。")
@@ -260,7 +260,7 @@ def validate(talks, schedule, days):
         if end != minute(day['end']):
             raise ConversionError(f"{date}: 終了時刻が開催時間と一致しません。")
     missing = set(by_id) - used
-    if missing:
+    if missing and require_all_talks:
         raise ConversionError("題目はあるが登壇枠がない講演: " + ', '.join(sorted(missing)))
 
 
@@ -291,10 +291,29 @@ def convert(shift, registration, titles, config, year=None):
     return {'config.json': updated_config, 'talks.json': talks, 'schedule.json': schedule}, report
 
 
+def convert_schedule(shift, talks, config, year=None):
+    """既存の講演IDと内容を保ち、PDFだけで日程を更新する。"""
+    if year is None:
+        match = re.search(r"(\d{4})年", config.get('dateTimeText', ''))
+        if not match:
+            raise ConversionError("開催年が不明です。--year で指定してください。")
+        year = int(match[1])
+    people = [dict(name=t['speaker'], kana=t.get('speakerKana', '')) for t in talks]
+    schedule, days, sources = read_schedule(shift, year, talks, people, require_all_talks=False)
+    used = {s.get('talkId') for s in schedule}
+    unscheduled = [t['speaker'] for t in talks if t['id'] not in used]
+    report = dict(counts=dict(talks=len(used - {None}), talkSlots=sum(s['type']=='talk' for s in schedule),
+                             otherSlots=sum(s['type']!='talk' for s in schedule), days=len(days)),
+                  days=days, notes=[f"{name}: 新シフトに登壇枠なし。講演情報は保持" for name in unscheduled],
+                  sources=dict(shift=dict(filename=Path(shift).name,
+                      sha256=hashlib.sha256(Path(shift).read_bytes()).hexdigest())), schedule=sources)
+    return {'schedule.json': schedule}, report
+
+
 def write_result(result, report, output, report_dir):
     """検証済みデータを一時保存し、既存JSONのバックアップ後に差し替える。"""
     output, report_dir = Path(output), Path(report_dir)
-    if set(result) != {'config.json', 'talks.json', 'schedule.json'}:
+    if set(result) not in ({'config.json', 'talks.json', 'schedule.json'}, {'schedule.json'}):
         raise ConversionError("出力ファイルの組が不正です。")
     output.mkdir(parents=True, exist_ok=True)
     report_dir.mkdir(parents=True, exist_ok=True)
@@ -327,17 +346,25 @@ def write_result(result, report, output, report_dir):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--shift', required=True, type=Path)
-    parser.add_argument('--registration', required=True, type=Path)
-    parser.add_argument('--titles', required=True, type=Path)
+    parser.add_argument('--registration', type=Path)
+    parser.add_argument('--titles', type=Path)
     parser.add_argument('--config', type=Path, default=ROOT/'data/config.json')
     parser.add_argument('--output', type=Path, default=ROOT/'data')
     parser.add_argument('--report-dir', type=Path, default=ROOT/'.local/imports')
     parser.add_argument('--year', type=int)
+    parser.add_argument('--schedule-only', action='store_true', help='既存の講演情報を使って日程だけ更新')
+    parser.add_argument('--talks', type=Path, default=ROOT/'data/talks.json')
     parser.add_argument('--check', action='store_true', help='照合・検証のみ。書き込まない')
     args = parser.parse_args()
     try:
-        result, report = convert(args.shift, args.registration, args.titles,
-                                 json.loads(args.config.read_text(encoding='utf-8')), args.year)
+        config = json.loads(args.config.read_text(encoding='utf-8'))
+        if args.schedule_only:
+            result, report = convert_schedule(args.shift,
+                json.loads(args.talks.read_text(encoding='utf-8')), config, args.year)
+        else:
+            if not args.registration or not args.titles:
+                parser.error('--registration と --titles が必要です（日程のみは --schedule-only）。')
+            result, report = convert(args.shift, args.registration, args.titles, config, args.year)
         if not args.check:
             destination = write_result(result, report, args.output, args.report_dir)
             print(f"保存先: {args.output}\nバックアップ・照合結果: {destination}")
