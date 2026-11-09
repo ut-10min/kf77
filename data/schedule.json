@@ -1,2 +1,485 @@
 [
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "10:00",
+    "end": "10:20",
+    "type": "talk",
+    "talkId": "speaker-安藤靖",
+    "speaker": "安藤靖"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "10:20",
+    "end": "10:40",
+    "type": "talk",
+    "talkId": "speaker-岡田正直",
+    "speaker": "岡田正直"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "10:40",
+    "end": "11:00",
+    "type": "talk",
+    "talkId": "speaker-佐藤諒",
+    "speaker": "佐藤諒"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "11:00",
+    "end": "11:20",
+    "type": "talk",
+    "talkId": "speaker-高原智史",
+    "speaker": "高原智史"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "11:20",
+    "end": "11:40",
+    "type": "talk",
+    "talkId": "speaker-千葉元太",
+    "speaker": "千葉元太"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "11:40",
+    "end": "12:00",
+    "type": "talk",
+    "talkId": "speaker-岡田正直",
+    "speaker": "岡田正直"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "12:00",
+    "end": "12:40",
+    "type": "break",
+    "title": "座談会"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "12:40",
+    "end": "13:00",
+    "type": "talk",
+    "talkId": "speaker-佐藤諒",
+    "speaker": "佐藤諒"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "13:00",
+    "end": "13:20",
+    "type": "talk",
+    "talkId": "speaker-高原智史",
+    "speaker": "高原智史"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "13:20",
+    "end": "13:40",
+    "type": "talk",
+    "talkId": "speaker-十河翔",
+    "speaker": "十河翔"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "13:40",
+    "end": "14:00",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "14:00",
+    "end": "14:20",
+    "type": "talk",
+    "talkId": "speaker-勇崎颯太",
+    "speaker": "勇崎颯太"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "14:20",
+    "end": "14:40",
+    "type": "talk",
+    "talkId": "speaker-近藤勇仁",
+    "speaker": "近藤勇仁"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "14:40",
+    "end": "15:00",
+    "type": "talk",
+    "talkId": "speaker-鷲田樹音",
+    "speaker": "鷲田樹音"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "15:00",
+    "end": "15:20",
+    "type": "talk",
+    "talkId": "speaker-梅村悠介",
+    "speaker": "梅村悠介"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "15:20",
+    "end": "15:40",
+    "type": "talk",
+    "talkId": "speaker-十河翔",
+    "speaker": "十河翔"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "15:40",
+    "end": "16:00",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "16:00",
+    "end": "16:20",
+    "type": "talk",
+    "talkId": "speaker-馬場崚",
+    "speaker": "馬場崚"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "16:20",
+    "end": "16:40",
+    "type": "talk",
+    "talkId": "speaker-近藤勇仁",
+    "speaker": "近藤勇仁"
+  },
+  {
+    "date": "2026-11-21",
+    "dateLabel": "11月21日（土）",
+    "start": "16:40",
+    "end": "17:00",
+    "type": "talk",
+    "talkId": "speaker-鷲田樹音",
+    "speaker": "鷲田樹音"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "10:00",
+    "end": "10:20",
+    "type": "talk",
+    "talkId": "speaker-千葉元太",
+    "speaker": "千葉元太"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "10:20",
+    "end": "10:40",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "10:40",
+    "end": "11:00",
+    "type": "talk",
+    "talkId": "speaker-近藤勇仁",
+    "speaker": "近藤勇仁"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "11:00",
+    "end": "11:20",
+    "type": "talk",
+    "talkId": "speaker-高原智史",
+    "speaker": "高原智史"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "11:20",
+    "end": "11:40",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "11:40",
+    "end": "12:00",
+    "type": "talk",
+    "talkId": "speaker-梅村悠介",
+    "speaker": "梅村悠介"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "12:00",
+    "end": "12:40",
+    "type": "break",
+    "title": "座談会"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "12:40",
+    "end": "13:00",
+    "type": "talk",
+    "talkId": "speaker-安藤靖",
+    "speaker": "安藤靖"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "13:00",
+    "end": "13:20",
+    "type": "talk",
+    "talkId": "speaker-近藤勇仁",
+    "speaker": "近藤勇仁"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "13:20",
+    "end": "13:40",
+    "type": "talk",
+    "talkId": "speaker-勇崎颯太",
+    "speaker": "勇崎颯太"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "13:40",
+    "end": "14:00",
+    "type": "talk",
+    "talkId": "speaker-十河翔",
+    "speaker": "十河翔"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "14:00",
+    "end": "14:20",
+    "type": "talk",
+    "talkId": "speaker-安藤靖",
+    "speaker": "安藤靖"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "14:20",
+    "end": "14:40",
+    "type": "talk",
+    "talkId": "speaker-鷲田樹音",
+    "speaker": "鷲田樹音"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "14:40",
+    "end": "15:00",
+    "type": "talk",
+    "talkId": "speaker-馬場崚",
+    "speaker": "馬場崚"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "15:00",
+    "end": "15:20",
+    "type": "talk",
+    "talkId": "speaker-高原智史",
+    "speaker": "高原智史"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "15:20",
+    "end": "15:40",
+    "type": "talk",
+    "talkId": "speaker-勇崎颯太",
+    "speaker": "勇崎颯太"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "15:40",
+    "end": "16:00",
+    "type": "talk",
+    "talkId": "speaker-梅村悠介",
+    "speaker": "梅村悠介"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "16:00",
+    "end": "16:20",
+    "type": "talk",
+    "talkId": "speaker-十河翔",
+    "speaker": "十河翔"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "16:20",
+    "end": "16:40",
+    "type": "talk",
+    "talkId": "speaker-鷲田樹音",
+    "speaker": "鷲田樹音"
+  },
+  {
+    "date": "2026-11-22",
+    "dateLabel": "11月22日（日）",
+    "start": "16:40",
+    "end": "17:00",
+    "type": "talk",
+    "talkId": "speaker-馬場崚",
+    "speaker": "馬場崚"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "10:00",
+    "end": "10:20",
+    "type": "talk",
+    "talkId": "speaker-岡田正直",
+    "speaker": "岡田正直"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "10:20",
+    "end": "10:40",
+    "type": "talk",
+    "talkId": "speaker-梅村悠介",
+    "speaker": "梅村悠介"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "10:40",
+    "end": "11:00",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "11:00",
+    "end": "11:20",
+    "type": "talk",
+    "talkId": "speaker-高原智史",
+    "speaker": "高原智史"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "11:20",
+    "end": "11:40",
+    "type": "talk",
+    "talkId": "speaker-馬場崚",
+    "speaker": "馬場崚"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "11:40",
+    "end": "12:00",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "12:00",
+    "end": "12:40",
+    "type": "break",
+    "title": "座談会"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "12:40",
+    "end": "13:00",
+    "type": "talk",
+    "talkId": "speaker-近藤勇仁",
+    "speaker": "近藤勇仁"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "13:00",
+    "end": "13:20",
+    "type": "talk",
+    "talkId": "speaker-山田江里子",
+    "speaker": "山田江里子"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "13:20",
+    "end": "13:40",
+    "type": "talk",
+    "talkId": "speaker-勇崎颯太",
+    "speaker": "勇崎颯太"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "13:40",
+    "end": "14:00",
+    "type": "talk",
+    "talkId": "speaker-梅村悠介",
+    "speaker": "梅村悠介"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "14:00",
+    "end": "14:20",
+    "type": "talk",
+    "talkId": "speaker-十河翔",
+    "speaker": "十河翔"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "14:20",
+    "end": "14:40",
+    "type": "talk",
+    "talkId": "speaker-鷲田樹音",
+    "speaker": "鷲田樹音"
+  },
+  {
+    "date": "2026-11-23",
+    "dateLabel": "11月23日（月）",
+    "start": "14:40",
+    "end": "15:00",
+    "type": "talk",
+    "talkId": "speaker-高原智史",
+    "speaker": "高原智史"
+  }
 ]
