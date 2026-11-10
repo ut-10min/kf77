@@ -268,6 +268,8 @@ function slotContent(item, talkMap) {
     return `<div class="slot-card break-slot-card${longClass}">
         ${badge}
         <div class="break-slot">${escapeHtml(item.title || "休憩")}</div>
+        ${item.speakers?.length ? `<p class="slot-detail-speaker"><b>出演者：</b>${escapeHtml(item.speakers.join("、"))}</p>` : ""}
+        ${item.description ? `<p class="slot-detail-abstract"><b>内容紹介：</b>${escapeHtml(item.description)}</p>` : ""}
       </div>`;
   }
 

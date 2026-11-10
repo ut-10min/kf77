@@ -1,3 +1,8 @@
+function escapeTimetableHtml(value) {
+  return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+}
+
 function groupBy(array, keyFn) {
   return array.reduce((acc, item) => {
     const key = keyFn(item);
@@ -40,7 +45,9 @@ function slotContent(item, talkMap) {
     return `
       <div class="slot-card break-slot-card${durationClass}">
         <span class="duration-badge">${durationLabel(item)}</span>
-        <div class="break-slot">${item.title || "休憩"}</div>
+        <div class="break-slot">${escapeTimetableHtml(item.title || "休憩")}</div>
+        ${item.speakers?.length ? `<p class="slot-detail-speaker"><b>出演者：</b>${escapeTimetableHtml(item.speakers.join("、"))}</p>` : ""}
+        ${item.description ? `<p class="slot-detail-abstract"><b>内容紹介：</b>${escapeTimetableHtml(item.description)}</p>` : ""}
       </div>
     `;
   }
